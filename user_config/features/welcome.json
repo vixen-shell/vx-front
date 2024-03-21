@@ -1,0 +1,15 @@
+{
+    "name": "welcome",
+    "frames": {
+        "main": {
+            "name": "Welcome to Vixen Shell",
+            "route": "main",
+            "show_on_startup": true
+        },
+        "about": {
+            "name": "About Vixen Shell",
+            "route": "about"
+        }
+    },
+    "state": {}
+}
