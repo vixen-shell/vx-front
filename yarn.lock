@@ -1643,7 +1643,7 @@ vite@^5.0.8:
 
 "vx-front@https://github.com/vixen-shell/vx-front-library-package.git":
   version "0.1.0"
-  resolved "https://github.com/vixen-shell/vx-front-library-package.git#ed428a2cc5e79815b08bb1b1ef6b456d8c9fa455"
+  resolved "https://github.com/vixen-shell/vx-front-library-package.git#0639ed137aea6f7ed3abe843d33ef90968ee3ca5"
 
 which@^2.0.1:
   version "2.0.2"
