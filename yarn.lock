@@ -2489,7 +2489,7 @@ vite@^5.4.1:
 
 "vx-front@https://github.com/vixen-shell/vx-front-library-package.git":
   version "0.0.1"
-  resolved "https://github.com/vixen-shell/vx-front-library-package.git#51a1fbeafa84ce97e54d04b591f7c4e64a9d3f30"
+  resolved "https://github.com/vixen-shell/vx-front-library-package.git#22a76a8c9a3a5bf80f45859b8a98127e410481ec"
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"
