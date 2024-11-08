@@ -4,6 +4,38 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/svg+xml" href="/vixen.svg" />
+        <style>
+            :root {
+                user-select: none !important;
+                -webkit-user-select: none !important;
+            }
+
+            body::-webkit-scrollbar {
+                display: none;
+            }
+
+            body {
+                background-color: transparent !important;
+            }
+
+            .mantine-Blockquote-cite,
+            .mantine-Highlight-root,
+            .mantine-List-itemLabel,
+            .mantine-Mark-root,
+            .mantine-Table-tr,
+            .mantine-Table-th,
+            .mantine-Table-td,
+            .mantine-Table-caption,
+            .mantine-Text-root,
+            .mantine-Title-root {
+                cursor: default !important;
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+            }
+        </style>
     </head>
     <body>
         <div
