@@ -1,4 +1,4 @@
-import { Feature } from 'vx-front'
+import { Feature } from '@vx-feature'
 
 import ThemeSettings from './ThemeSettings'
 

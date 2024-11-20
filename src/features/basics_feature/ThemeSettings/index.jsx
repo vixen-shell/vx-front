@@ -1,25 +1,73 @@
-import { Feature, Icon, SysIcon } from 'vx-front'
+import { Feature } from '@vx-feature'
+import { useTheme, useColorScheme } from '@vx-hooks'
+import { Stack, Group, Space } from '@vx-layoutComponents'
+import { ColorSwatch, Icon, SysIcon } from '@vx-dataComponents'
+import { Divider, ScrollArea } from '@vx-variousComponents'
+import { Button } from '@vx-buttonComponents'
+
 import {
-    Stack,
-    useMantineTheme,
     NumberInput,
-    ColorSwatch,
     NativeSelect,
     Switch,
     Checkbox,
-    Group,
-    Divider,
-    Space,
-    ScrollArea,
-    Button,
-} from '@mantine/core'
-import { useColorScheme } from '@mantine/hooks'
+} from '@vx-inputComponents'
+
+import { useMemo, useState } from 'react'
+
+function getCurrentSettings(getStateItemCopy) {
+    return {
+        vx_ui_scale: getStateItemCopy('vx_ui_scale'),
+        vx_ui_color_scheme: getStateItemCopy('vx_ui_color_scheme'),
+        vx_ui_color: getStateItemCopy('vx_ui_color'),
+        vx_ui_icons: getStateItemCopy('vx_ui_icons'),
+        vx_ui_font_family: getStateItemCopy('vx_ui_font_family'),
+        vx_ui_font_family_monospace: getStateItemCopy(
+            'vx_ui_font_family_monospace'
+        ),
+    }
+}
+
+function compareSettings(prevSettings, currentSettings) {
+    for (const cle of Object.keys(prevSettings)) {
+        if (prevSettings[cle] !== currentSettings[cle]) {
+            return false
+        }
+    }
+
+    return true
+}
 
 function ThemeSettings() {
+    const theme = useTheme()
     const colorScheme = useColorScheme()
-    const theme = useMantineTheme()
-    const { state, setStateItem } = Feature.Use.State()
+
+    const { state, setStateItem, getStateItemCopy } = Feature.Use.State()
+    const locale = Feature.Use.Locales()
     const data = Feature.Use.Data()
+    const task = Feature.Use.Task()
+
+    const [prevSettings, setPrevSettings] = useState(
+        getCurrentSettings(getStateItemCopy)
+    )
+
+    const currentSettings = useMemo(
+        () => ({
+            vx_ui_scale: state.vx_ui_scale,
+            vx_ui_color_scheme: state.vx_ui_color_scheme,
+            vx_ui_color: state.vx_ui_color,
+            vx_ui_icons: state.vx_ui_icons,
+            vx_ui_font_family: state.vx_ui_font_family,
+            vx_ui_font_family_monospace: state.vx_ui_font_family_monospace,
+        }),
+        [
+            state.vx_ui_color,
+            state.vx_ui_color_scheme,
+            state.vx_ui_font_family,
+            state.vx_ui_font_family_monospace,
+            state.vx_ui_icons,
+            state.vx_ui_scale,
+        ]
+    )
 
     return (
         <Stack h="100%">
@@ -34,8 +82,10 @@ function ThemeSettings() {
                     <SysIcon iconName="gnome-settings-theme" size={48} />
                     <Space h="xl" />
                     <NumberInput
-                        label="UI Scale"
-                        description="Set the display scale of the Vixen Sell UI"
+                        label={locale('Scale')}
+                        description={locale(
+                            'Set the display scale of the Vixen Sell UI'
+                        )}
                         value={state.vx_ui_scale}
                         onChange={(value) => setStateItem('vx_ui_scale', value)}
                         decimalScale={2}
@@ -49,8 +99,10 @@ function ThemeSettings() {
                     <Group grow w="100%" gap={64}>
                         <Group justify="space-between">
                             <Checkbox
-                                label="Color scheme"
-                                description="Use a custom Vixen Shell color scheme"
+                                label={locale('Color scheme')}
+                                description={locale(
+                                    'Use a custom color scheme'
+                                )}
                                 variant="outline"
                                 checked={Boolean(state.vx_ui_color_scheme)}
                                 onChange={() => {
@@ -89,8 +141,8 @@ function ThemeSettings() {
                             />
                         </Group>
                         <NativeSelect
-                            label="Color Theme"
-                            description="Set the Vixen Shell theme color"
+                            label={locale('Primary color')}
+                            description={locale('Set primary color')}
                             data={Object.keys(theme.colors)}
                             value={theme.primaryColor}
                             onChange={(event) =>
@@ -114,8 +166,8 @@ function ThemeSettings() {
                             <Icon iconName="infinity" size={32} />
                         </Group>
                         <NativeSelect
-                            label="Icon style"
-                            description="Set Vixen Shell icon style"
+                            label={locale('Icon style')}
+                            description={locale('Set Vixen Shell icon style')}
                             data={[
                                 'thin',
                                 'light',
@@ -136,8 +188,10 @@ function ThemeSettings() {
                     <Divider my="md" w="100%" />
                     <Group grow w="100%" gap={64}>
                         <NativeSelect
-                            label="Font family"
-                            description="Set the Vixen Shell font family"
+                            label={locale('Font family')}
+                            description={locale(
+                                'Set the Vixen Shell font family'
+                            )}
                             data={[
                                 'default',
                                 ...(data.get('fonts', {
@@ -158,8 +212,10 @@ function ThemeSettings() {
                             w="100%"
                         />
                         <NativeSelect
-                            label="Monospace font family"
-                            description="Set the Vixen Shell monospace font family"
+                            label={locale('Monospace font family')}
+                            description={locale(
+                                'Set the Vixen Shell monospace font family'
+                            )}
                             data={[
                                 'default',
                                 ...(data.get('monospace_fonts', {
@@ -188,9 +244,28 @@ function ThemeSettings() {
                     </Group>
                 </Stack>
             </ScrollArea>
-            <Group justify="center" style={{ padding: '32px 10%' }}>
-                <Button variant="outline">Restore</Button>
-                <Button variant="outline">Save</Button>
+            <Group justify="space-between" style={{ padding: '32px 10%' }}>
+                <Button
+                    disabled={compareSettings(prevSettings, currentSettings)}
+                    variant="outline"
+                    onClick={() =>
+                        task.run('restore_theme_settings', [prevSettings])
+                    }
+                >
+                    {locale('Restore')}
+                </Button>
+                <Button
+                    disabled={compareSettings(prevSettings, currentSettings)}
+                    variant="outline"
+                    onClick={() => {
+                        task.run('save_theme_setting', [
+                            Object.keys(prevSettings),
+                        ])
+                        setPrevSettings(getCurrentSettings(getStateItemCopy))
+                    }}
+                >
+                    {locale('Save')}
+                </Button>
             </Group>
         </Stack>
     )
