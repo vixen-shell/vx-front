@@ -2506,7 +2506,7 @@ vite@^5.4.1:
 
 "vx-front@https://github.com/vixen-shell/vx-front-library-package.git":
   version "1.0.0-beta.1"
-  resolved "https://github.com/vixen-shell/vx-front-library-package.git#5ac24f1a08b493a1b2c4298d37b47d81c201814e"
+  resolved "https://github.com/vixen-shell/vx-front-library-package.git#37bb783c198c558cc05eb993b2022b63e6b7b46a"
   dependencies:
     re-resizable "^6.10.0"
 
