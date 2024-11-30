@@ -1,16 +1,16 @@
 import { Feature } from '@vx-feature'
-import { useTheme, useColorScheme } from '@vx-hooks'
-import { Stack, Group, Space } from '@vx-layoutComponents'
-import { ColorSwatch, Icon, SysIcon } from '@vx-dataComponents'
-import { Divider, ScrollArea } from '@vx-variousComponents'
-import { Button } from '@vx-buttonComponents'
+import { useTheme, useColorScheme } from '@vx-hooks/Basics'
+import { Stack, Group, Space } from '@vx-components/Basics'
+import { ColorSwatch, Icon, SysIcon } from '@vx-components/Basics'
+import { Divider, ScrollArea } from '@vx-components/Basics'
+import { Button } from '@vx-components/Basics'
 
 import {
     NumberInput,
     NativeSelect,
     Switch,
     Checkbox,
-} from '@vx-inputComponents'
+} from '@vx-components/Basics'
 
 import { useMemo, useState } from 'react'
 
