@@ -1,18 +1,19 @@
 import { Feature } from '@vx-feature'
-import { useTheme, useColorScheme } from '@vx-hooks'
-import { Stack, Group, Space } from '@vx-layoutComponents'
-import { ColorSwatch, Icon, SysIcon } from '@vx-dataComponents'
-import { Divider, ScrollArea } from '@vx-variousComponents'
-import { Button } from '@vx-buttonComponents'
+import { useMemo, useState } from 'react'
+
+import { useTheme, useColorScheme } from '@vx-hooks/Mantine/Ui'
+import { Stack, Group, Space } from '@vx-components/Mantine/Layouts'
+import { ColorSwatch } from '@vx-components/Mantine/Data'
+import { Icon, SysIcon } from '@vx-components/Vixen'
+import { Divider, ScrollArea } from '@vx-components/Mantine/Various'
+import { Button } from '@vx-components/Mantine/Buttons'
 
 import {
     NumberInput,
     NativeSelect,
     Switch,
     Checkbox,
-} from '@vx-inputComponents'
-
-import { useMemo, useState } from 'react'
+} from '@vx-components/Mantine/Inputs'
 
 function getCurrentSettings(getStateItemCopy) {
     return {

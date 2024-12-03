@@ -2,46 +2,9 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@vx-components": [
-                "node_modules/vx-front/dist/interface/components/index"
-            ],
-            "@vx-buttonComponents": [
-                "node_modules/vx-front/dist/interface/components/buttons"
-            ],
-            "@vx-comboboxComponents": [
-                "node_modules/vx-front/dist/interface/components/comboboxes"
-            ],
-            "@vx-dataComponents": [
-                "node_modules/vx-front/dist/interface/components/data"
-            ],
-            "@vx-dateComponents": [
-                "node_modules/vx-front/dist/interface/components/dates"
-            ],
-            "@vx-feedbackComponents": [
-                "node_modules/vx-front/dist/interface/components/feedback"
-            ],
-            "@vx-inputComponents": [
-                "node_modules/vx-front/dist/interface/components/inputs"
-            ],
-            "@vx-layoutComponents": [
-                "node_modules/vx-front/dist/interface/components/layouts"
-            ],
-            "@vx-variousComponents": [
-                "node_modules/vx-front/dist/interface/components/misc"
-            ],
-            "@vx-navigationComponents": [
-                "node_modules/vx-front/dist/interface/components/navigation"
-            ],
-            "@vx-overlayComponents": [
-                "node_modules/vx-front/dist/interface/components/overlays"
-            ],
-            "@vx-typographyComponents": [
-                "node_modules/vx-front/dist/interface/components/typography"
-            ],
-            "@vx-feature": [
-                "node_modules/vx-front/dist/interface/feature/index"
-            ],
-            "@vx-hooks": ["node_modules/vx-front/dist/interface/hooks/index"]
+            "@vx-feature": ["node_modules/vx-front/dist/feature/index"],
+            "@vx-components/*": ["components/*"],
+            "@vx-hooks/*": ["hooks/*"]
         }
     }
 }
