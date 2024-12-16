@@ -2518,9 +2518,7 @@ vite@^5.4.1:
 
 "vx-front@https://github.com/vixen-shell/vx-front-library-package.git":
   version "1.0.0-beta.1"
-  resolved "https://github.com/vixen-shell/vx-front-library-package.git#67f3ace57157df4a45039de6c30dccc1887bb232"
-  dependencies:
-    re-resizable "^6.10.0"
+  resolved "https://github.com/vixen-shell/vx-front-library-package.git#434c7b0a071cc042511c16fc9c6a51fe28cf9fe0"
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"
